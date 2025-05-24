@@ -23,10 +23,9 @@ int main() {
                 cnt += 1;
             }
             last = grid[i][j];
-            if (cnt >= m){
-                ans += 1;
-                break;
-            }
+        }
+        if (cnt >= m){
+            ans += 1;
         }
     }
     for(int i=0;i<n;i++){
@@ -37,10 +36,9 @@ int main() {
                 cnt += 1;
             }
             last = grid[j][i];
-            if (cnt >= m){
-                ans += 1;
-                break;
-            }
+        }
+        if (cnt >= m){
+            ans += 1;
         }
     }
     cout << ans;
