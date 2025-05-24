@@ -23,7 +23,7 @@ int main() {
             cin >> grid[i][j];
         }
     }
-    int maxK = 0;
+    int maxK = 1;
     int maxV = 0;
     for(int k=1;k<=100;k++){    
         copy(k);
