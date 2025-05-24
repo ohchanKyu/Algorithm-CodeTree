@@ -21,6 +21,8 @@ int main() {
         for(int j=1;j<n;j++){
             if (last == grid[i][j]){
                 cnt += 1;
+            }else{
+                cnt = 1;
             }
             last = grid[i][j];
         }
@@ -34,6 +36,8 @@ int main() {
         for(int j=1;j<n;j++){
             if (last == grid[j][i]){
                 cnt += 1;
+            }else{
+                cnt = 1;
             }
             last = grid[j][i];
         }
