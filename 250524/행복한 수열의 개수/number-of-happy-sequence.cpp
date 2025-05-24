@@ -28,6 +28,7 @@ int main() {
                 found = true;
             }
         }
+        if (n == 1 && m == 1) found = true;
         if (found) ans++;
     }
 
@@ -44,6 +45,7 @@ int main() {
                 found = true;
             }
         }
+        if (n == 1 && m == 1) found = true;
         if (found) ans++;
     }
 
