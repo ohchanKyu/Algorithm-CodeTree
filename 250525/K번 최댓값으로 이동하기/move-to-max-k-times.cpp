@@ -44,6 +44,7 @@ int main() {
     cout << ans.first + 1 <<  " " << ans.second + 1;
     return 0;
 }
+
 void clear(){
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
@@ -51,6 +52,7 @@ void clear(){
         }
     }
 }
+
 void bfs(coord start,int value){
 
     queue<coord> q;
@@ -73,6 +75,7 @@ void bfs(coord start,int value){
             q.push(coord(nx,ny));
         }
     }
+
     priority_queue<coord,vector<coord>,Compare> pq;
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
@@ -81,5 +84,7 @@ void bfs(coord start,int value){
             }
         }
     }
-    ans = pq.top();
+    if (!pq.empty()){
+        ans = pq.top();
+    }
 }
