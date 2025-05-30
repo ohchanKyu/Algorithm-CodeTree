@@ -7,7 +7,7 @@ int n;
 // dp[N][0] 은 N층까지 갈 때 2계단을 올라가는 경우
 // dp[N][1] 은 N층까지 갈 때 3계단을 올라가는 경우
 
-int dp[1001][2];
+long long dp[1001][2];
 
 int main() {
     
@@ -23,7 +23,7 @@ int main() {
     
     for(int i=4;i<=1000;i++){
         dp[i][0] = dp[i-2][0] + dp[i-2][1];
-        dp[i][1] = dp[i-3][0] + dp[i-3][1];
+        dp[i][1] = dp[i-3][0] + dp[i-3][];
     }
     cout << dp[n][0] + dp[n][1];
 
