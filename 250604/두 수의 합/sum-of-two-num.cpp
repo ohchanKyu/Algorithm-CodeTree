@@ -21,7 +21,7 @@ int main() {
     return 0;
 }
 
-void dfs(int depth,int start,vector<int> nums){
+void dfs(int depth, int start, vector<int> nums){
 
     if (depth == 2){
         long long sumV = 0;
@@ -34,7 +34,7 @@ void dfs(int depth,int start,vector<int> nums){
 
     for(int i=start;i<n;i++){
         nums.push_back(arr[i]);
-        dfs(depth+1,i,nums);
+        dfs(depth+1, i + 1, nums);
         nums.pop_back();
     }
 }
