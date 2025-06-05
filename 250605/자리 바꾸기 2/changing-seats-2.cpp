@@ -26,13 +26,12 @@ int main() {
     }
     for(int t=0;t<3;t++){
         for(int i=0;i<K;i++){
-            int num1 = arr[a[i]];
+            int num1 = arr[a[i]]; 
             int num2 = arr[b[i]];
             arr[a[i]] = num2;
             arr[b[i]] = num1;
-            for(int k=1;k<=N;k++){
-                v[arr[k]].insert(k);
-            }
+            v[num2].insert(a[i]);
+            v[num1].insert(b[i]);
         }
     }
     for(int i=1;i<=N;i++){
