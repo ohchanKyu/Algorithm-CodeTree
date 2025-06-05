@@ -41,24 +41,23 @@ void dfs(int depth,int start,vector<int> v){
 void check(vector<int> v){
     
     unordered_set<string> Aset;
+    vector<string> checklist;
 
     for(int i=0;i<n;i++){
-        string str = A[i];
         string target =  "";
+        string target2 = "";
+
         for(int idx : v){
             target += A[i][idx];
+            target2 += B[i][idx];
         }
+        checklist.push_back(target2);
         Aset.insert(target);
     }
     
     bool isSeperate = true;
-    for(int i=0;i<n;i++){
-        string str = B[i];
-        string target =  "";
-        for(int idx : v){
-            target += B[i][idx];
-        }
-        if (Aset.find(target) != Aset.end()) isSeperate = false;
+    for(string s : checklist){
+        if (Aset.find(s) != Aset.end()) isSeperate = false;
     }
     if (isSeperate) ans += 1;
 }
