@@ -8,14 +8,12 @@ int n, m;
 int P[100000], L[100000];
 
 struct cmp_1 {
-
     bool operator()(const pair<int,int> &a,const pair<int,int> &b) const {
         if (a.first == b.first) return a.second < b.second;
         return a.first < b.first;
     };
 };
 struct cmp_2 {
-    
     bool operator()(const pair<int,int> &a, const pair<int,int> &b) const {
         if (a.first == b.first) return a.second > b.second;
         return a.first < b.first;
