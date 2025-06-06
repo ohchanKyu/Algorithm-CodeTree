@@ -20,7 +20,7 @@ int main() {
     for(int i=0;i<n;i++){
         int x = arr[i];
         set<int>::iterator it;
-        it = s.lower_bound(x - m);
+        it = s.upper_bound(x - m);
         if (it != s.begin()){
             it--;
             ans = min(ans,abs(x - *it));
