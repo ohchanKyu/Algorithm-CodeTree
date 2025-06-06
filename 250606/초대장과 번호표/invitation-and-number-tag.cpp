@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_set>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -13,8 +14,11 @@ int main() {
    
     vector<unordered_set<int>> groups(G);
     vector<bool> isFixed(G,false);
+
+    // member N 별로 속한 group 목록
+    vector<vector<int>> memberToGroup(N+1);
     unordered_set<int> invited;
-    invited.insert(1);
+    vector<int> groupMemberCount(G,0);
 
     for (int i = 0; i < G; i++) {
         int groupSize;
@@ -23,28 +27,31 @@ int main() {
             int groupMember;
             cin >> groupMember;
             groups[i].insert(groupMember);
+            memberToGroup[groupMember].push_back(i);
         }
     }
+    queue<int> q;
+    // member id
+    q.push(1);
+    invited.insert(1);
+    
+    while(!q.empty()){
 
-    bool isChange = true;
-    while(isChange){
+        int memberId = q.front(); q.pop();
         
-        isChange = false;
-        for(int i=0;i<G;i++){
-            if (isFixed[i]) continue;
-            int count = 0;
-            unordered_set<int> groupComponent = groups[i];
-            int target;
-            for(int g : groupComponent){
-                if (invited.find(g) != invited.end()) count += 1;
-                else target = g;
+        for(int groupId : memberToGroup[memberId]){
+            if (isFixed[groupId]) continue;
+            groupMemberCount[groupId] += 1;
+            if (groupMemberCount[groupId] == groups[groupId].size() - 1){
+                isFixed[groupId] = true;
+                for(int member : groups[groupId]){
+                    if (invited.find(member) == invited.end()){
+                        invited.insert(member);
+                        q.push(member);
+                    }
+                }
             }
-            if (count == groupComponent.size() - 1){
-                invited.insert(target);
-                isFixed[i] = true;
-                isChange = true;
-            }
-        }    
+        }
     }
     cout << invited.size();
     return 0;
