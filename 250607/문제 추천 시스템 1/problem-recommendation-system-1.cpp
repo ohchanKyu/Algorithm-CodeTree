@@ -16,7 +16,7 @@ struct cmp {
 
 int main() {
     cin >> n;
-    set<pair<int, int>, cmp> s; 
+    set<pair<int, int>> s; 
 
     for (int i = 0; i < n; i++) {
         cin >> P[i] >> L[i];
