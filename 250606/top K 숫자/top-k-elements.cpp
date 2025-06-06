@@ -18,7 +18,7 @@ int main() {
     auto it = s.rbegin();
     for(int i=0;i<k;i++){
         cout << *it << " ";
-        it--;
+        ++it;
     }
     return 0;
 }
