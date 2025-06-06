@@ -6,6 +6,7 @@ using namespace std;
 
 int n;
 int queries[100000];
+long minV = LONG_MAX;
 
 int main() {
     
@@ -16,19 +17,19 @@ int main() {
     set<int>::iterator it;
     
     for (int i = 0; i < n; i++) {
+
         cin >> queries[i];
         s.insert(queries[i]);
-
-        long minV = LONG_MAX;
-
-        for(int x : s){
-            it = s.upper_bound(x);
-            if (it == s.end()) continue;
-            int upper = *it;
-            it--;
-            if (it == s.end()) continue;
-            int down = *it;
-            minV = min(minV,(long)(upper-down));
+        it = s.lower_bound(queries[i]);
+        it--;
+        long target1 = long(queries[i] - *it);
+        it++;
+        it++;
+        if (it == s.end()){
+            minV = min(minV,target1);
+        }else{
+            long target2 = long(*it - queries[i]);
+            minV = min(minV,min(target1,target2));
         }
         cout << minV << "\n";
     }
