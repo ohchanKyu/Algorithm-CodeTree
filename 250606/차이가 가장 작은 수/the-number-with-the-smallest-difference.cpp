@@ -1,5 +1,6 @@
 #include <iostream>
 #include <set>
+#include <limits.h>
 
 using namespace std;
 
@@ -15,18 +16,17 @@ int main() {
         cin >> arr[i];
         s.insert(arr[i]);
     }
-    int minV = *s.begin();
-    bool isSuccess = false;
-    auto it = s.begin();
-    it++;
-    for(;it != s.end();it++){
-        int diff = *it - minV;
-        if (diff >= m){
-            isSuccess = true;
-            cout << diff << "\n";
-            return 0;
+    int ans = INT_MAX;
+    for(int i=0;i<n;i++){
+        int x = arr[i];
+        set<int>::iterator it;
+        it = s.lower_bound(x - m);
+        if (it != s.begin()){
+            it--;
+            ans = min(ans,abs(x - *it));
         }
     }
-    if (!isSuccess) cout << -1;
+    if (ans == INT_MAX) cout << -1;
+    else cout << ans;
     return 0;
 }
