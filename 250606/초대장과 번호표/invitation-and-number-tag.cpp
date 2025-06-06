@@ -5,20 +5,12 @@
 using namespace std;
 
 int N, G;
-
 typedef pair<int,set<int>> groupSet;
-struct Compare{
-
-    bool operator()(const groupSet &a,const groupSet &b){
-        return a.first > b.first;
-    }
-};
-
 
 int main() {
 
     cin >> N >> G;
-    priority_queue<groupSet, vector<groupSet>, Compare> q;
+    queue<groupSet> q;
     set<int> invited;
 
     for (int i = 0; i < G; i++) {
@@ -37,7 +29,7 @@ int main() {
     }
 
     for(int i=0;i<G;i++){
-        groupSet groupComponent = q.top();
+        groupSet groupComponent = q.front();
         q.pop();
         set<int> groups = groupComponent.second;
         int groupSize = groupComponent.first;
