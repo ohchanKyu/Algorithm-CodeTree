@@ -1,48 +1,51 @@
 #include <iostream>
 #include <set>
-#include <queue>
+#include <vector>
 
 using namespace std;
 
 int N, G;
+
 typedef pair<int,set<int>> groupSet;
 
 int main() {
 
     cin >> N >> G;
-    queue<groupSet> q;
+   
+    vector<set<int>> groups(G);
+    vector<bool> isFixed(G,false);
     set<int> invited;
+    invited.insert(1);
 
     for (int i = 0; i < G; i++) {
         int groupSize;
         cin >> groupSize;
-        set<int> groups;
-        groupSet groupComponent = groupSet(groupSize, groups);
-
         for (int j = 0; j < groupSize; j++) {
             int groupMember;
             cin >> groupMember;
-            if (j == 0) invited.insert(groupMember);
-            groupComponent.second.insert(groupMember);
+            groups[i].insert(groupMember);
         }
-        q.push(groupComponent);
     }
 
-    for(int i=0;i<G;i++){
-        groupSet groupComponent = q.front();
-        q.pop();
-        set<int> groups = groupComponent.second;
-        int groupSize = groupComponent.first;
+    bool isChange = true;
+    while(isChange){
         
-        int cnt = 0;
-        for(int g : groups){
-            if (invited.find(g) != invited.end()) cnt += 1;
-        }
-        if (cnt == groupSize - 1){
-            for(int g : groups){
-                if (invited.find(g) == invited.end()) invited.insert(g);
+        isChange = false;
+        for(int i=0;i<G;i++){
+            if (isFixed[i]) continue;
+            int count = 0;
+            set<int> groupComponent = groups[i];
+            for(int g : groupComponent){
+                if (invited.find(g) != invited.end()) count += 1;
             }
-        }
+            if (count == groupComponent.size() - 1){
+                for(int g : groupComponent){
+                    if (invited.find(g) == invited.end()) invited.insert(g);
+                }
+                isFixed[i] = true;
+                isChange = true;
+            }
+        }    
     }
     cout << invited.size();
     return 0;
