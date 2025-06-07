@@ -11,9 +11,9 @@ int x[MAX_N], y[MAX_N];
 struct compare{
 
     bool operator()(const coord &a,const coord &b) const {
-        if (a.first + a.second == b.first == b.second){
+        if (a.first + a.second == b.first + b.second){
             if (a.first == b.first) return a.second > b.second; 
-            return a.first > a.second;
+            return a.first > b.first;
         }
         return a.first + a.second > b.first + b.second;
     }
