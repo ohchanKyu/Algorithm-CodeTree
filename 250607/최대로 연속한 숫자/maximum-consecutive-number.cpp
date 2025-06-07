@@ -13,7 +13,8 @@ int main() {
     for(int i=0;i<=n;i++) s.insert(i);
     
     for (int i = 0; i < m; i++) {
-        cin >> x
+        int x;
+        cin >> x;
         s.erase(x);
         int maxV = 0;
         
