@@ -4,7 +4,6 @@
 using namespace std;
 
 int n, m;
-int nums[100000];
 
 int main() {
 
@@ -14,8 +13,8 @@ int main() {
     for(int i=0;i<=n;i++) s.insert(i);
     
     for (int i = 0; i < m; i++) {
-        cin >> nums[i];
-        s.erase(nums[i]);
+        cin >> x
+        s.erase(x);
         int maxV = 0;
         
         auto it = s.begin();
