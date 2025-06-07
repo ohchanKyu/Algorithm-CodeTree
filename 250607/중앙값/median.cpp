@@ -17,7 +17,7 @@ int main() {
         for (int j = 0; j < m; j++) {
             cin >> arr[j];
             v.push_back(arr[j]);
-            if (arr[j] % 2 == 1){
+            if ((j+1) % 2 == 1){
                 sort(v.begin(),v.end());
                 int index = (j+1) / 2;
                 cout << v[index] << " ";
