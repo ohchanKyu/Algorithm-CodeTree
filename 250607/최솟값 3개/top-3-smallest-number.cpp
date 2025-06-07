@@ -18,11 +18,11 @@ int main() {
             cout << -1 << "\n";
             continue;
         }
-        int ans = 1;
+        long long ans = 1;
         int first = pq.top(); pq.pop();
         int second = pq.top(); pq.pop();
         int third = pq.top(); pq.pop();
-        cout << first * second * third << "\n";
+        cout << (long long)first * second * third << "\n";
         pq.push(first); pq.push(second); pq.push(third);
     }
     
