@@ -52,6 +52,7 @@ int main() {
     while(x != B){
         // A -> i ... -> B 까지 역추적
         bool found = false;
+        // mdist에서는 B -> i ... -> A 경로가 존재.
         for(int i=1;i<=n && !found;i++){
             // graph[i]는 i에서 다른 정점으로 가는것을 뜻함
             for(edge next : graph[i]){
