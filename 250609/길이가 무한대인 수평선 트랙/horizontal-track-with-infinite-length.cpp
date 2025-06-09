@@ -1,31 +1,33 @@
 #include <iostream>
 #include <set>
 
+using namespace std;
+
+int N, T;
+
+
 int main() {
-	// 여기에 코드를 작성해주세요.
-	uint64_t n, t;
-	std::cin >> n >> t;
+    
+    cin >> N >> T;
+    set<long long> s;
 
-	std::set<uint64_t> s;
-	while (n--) {
-		uint64_t a, b;
-		std::cin >> a >> b;
+    while(N--){
 
-		uint64_t target = a + b * t;
-
-                // 나보다 앞지른 사람만 모두 제거합니다. 같은 그룹으로 포함시키기 위해서
-		while (1) {
-			auto it = s.lower_bound(target);
-			if (it == s.end())
-				break;
-
-			s.erase(it);
-		}
-
-		s.emplace(target); // 그룹으로 등록합니다.
-	}
-
-	std::cout << s.size(); // 그룹 사이즈 수
-
-	return 0;
+        int a,b;
+        cin >> a >> b;
+        // T초후 최종 위치
+        long long target = a + (long long)b * T;
+        while(1){
+            // target보다 크거나 같은 위치 모두 제거
+            // 앞지른 사람은 제거하기 위해
+            // 출발점이 앞선 사람의 정보가 먼저 주어져서 가능한 로직
+            auto it = s.lower_bound(target);
+            if (it == s.end()) break;
+            s.erase(it);
+        }
+        // 해당 target을 그룹으로 등록
+        s.emplace(target);
+    }
+    cout << s.size();
+    return 0;
 }
