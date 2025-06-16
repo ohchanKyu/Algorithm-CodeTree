@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits.h>
 
 using namespace std;
 
 string expression;
 vector<char> op;
 
-int maxV = 0;
+int maxV = INT_MIN;
 int num;
 
 void dfs(int index,vector<int> v){
