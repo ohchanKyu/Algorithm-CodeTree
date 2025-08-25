@@ -5,19 +5,22 @@ using namespace std;
 int n;
 int x1[15], x2[15];
 int maxV = 0;
-int visited[15];
+int visited[1004];
 
 int cal(vector<int> &v){
 
-    fill(visited,visited + 15,false);
+    memset(visited,0,sizeof(visited));
     int cnt = 0;
     for(int i=0;i<v.size();i++){
         if (!v[i]) continue;
+
         int l = x1[i];
         int r = x2[i];
-        for(int i=l;i<=r;i++){
-            if (visited[i]) return -1;
-            visited[i] = 1;
+        for(int j=l;j<=r;j++){
+            if (visited[j]){
+                return -1;
+            }
+            visited[j] = 1;
         }
         cnt++;
     }
