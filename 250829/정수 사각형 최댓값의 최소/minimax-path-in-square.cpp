@@ -21,8 +21,7 @@ int main() {
     }
     for(int i=1;i<n;i++){
         for(int j=1;j<n;j++){
-            if (i == n-1 && j == n-1) dp[i][j] = min(dp[i-1][j],dp[i][j-1]);
-            else dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+            dp[i][j] = max(grid[i][j], min(dp[i-1][j],dp[i][j-1]));
         }
     }
     cout << dp[n-1][n-1];
