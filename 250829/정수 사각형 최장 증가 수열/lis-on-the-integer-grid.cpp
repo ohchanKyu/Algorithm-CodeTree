@@ -35,6 +35,13 @@ int main() {
             cin >> grid[i][j];
         }
     }
-    cout << go(0,0,-1);
+    int maxV = 0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            maxV = max(maxV,go(0,0,-1));
+        }
+    }
+    cout << maxV;
+
     return 0;
 }
