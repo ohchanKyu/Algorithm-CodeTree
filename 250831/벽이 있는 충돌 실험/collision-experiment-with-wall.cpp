@@ -21,7 +21,7 @@ void move(){
 
     map<pair<int,int>, int> mp;
     vector<Element> vv;
-    for(auto it : v){
+    for(auto &it : v){
         int x = it.x;
         int y = it.y;
         int dir = it.d;
@@ -36,7 +36,7 @@ void move(){
         mp[{nx,ny}] += 1; 
     }
     v.clear();
-    for(auto it : vv){
+    for(auto &it : vv){
         int x = it.x;
         int y = it.y;
         int dir = it.d;
@@ -59,9 +59,7 @@ int main() {
             else dir = 3;
             v.push_back({ --x[i], --y[i], dir});
         }
-        for(int tt=0; tt < 2 * N;tt++){
-            move();
-        }
+        for(int tt=0; tt < 2 * N; tt++) move();
         cout << v.size() << "\n";
     }
 
