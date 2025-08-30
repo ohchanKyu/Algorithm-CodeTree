@@ -19,26 +19,34 @@ vector<Element> v;
 const int dx[] = {-1,0,1,0};
 const int dy[] = {0,1,0,-1};
 
-void move(){
+void move() {
 
-   unordered_map<int, vector<Element>> mp;
-    for(auto &it : v){
+    vector<vector<int>> next_dir(N, vector<int>(N, -1));  
+    for (auto &it : v) {
         int x = it.x;
         int y = it.y;
         int dir = it.d;
         int nx = x + dx[dir];
         int ny = y + dy[dir];
-        if (nx < 0 || ny < 0 || nx >= N || ny >= N){
-            dir = (dir + 2) % 4;
+
+        if (nx < 0 || ny < 0 || nx >= N || ny >= N) {
+            dir = (dir + 2) % 4; 
             nx = x;
             ny = y;
         }
-        mp[nx * N + ny].push_back({nx, ny, dir});
+        if (next_dir[nx][ny] == -1) {
+            next_dir[nx][ny] = dir; 
+        } else {
+            next_dir[nx][ny] = -2; 
+        }
     }
+
     v.clear();
-    for (auto &it : mp) {
-        if (it.second.size() == 1) {
-            v.push_back(it.second[0]);
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (next_dir[i][j] != -1 && next_dir[i][j] != -2) {
+                v.push_back({i, j, next_dir[i][j]});
+            }
         }
     }
 }
