@@ -32,9 +32,11 @@ void move() {
             nx = x;
             ny = y;
         }
+        // empty
         if (visited[nx][ny] == -1){
             visited[nx][ny] = dir;
         }else{
+            // 충돌이므로 원래 있던것도 배제해야됨
             visited[nx][ny] = -2;
         }
     }
