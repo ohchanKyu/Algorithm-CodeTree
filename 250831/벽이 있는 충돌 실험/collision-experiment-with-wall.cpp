@@ -7,10 +7,12 @@ int N, M;
 int x[2500];
 int y[2500];
 char d[2500];
+int visited[54][54];
 
 struct Element{
     int x,y,d;
 };
+vector<Element> A[54][54];
 vector<Element> v;
 
 // 위쪽 오른쪽 아래 왼쪽
@@ -19,8 +21,7 @@ const int dy[] = {0,1,0,-1};
 
 void move(){
 
-    unordered_map<int, int> mp;
-    unordered_map<int, int> mp2;
+   unordered_map<int, vector<Element>> mp;
     for(auto &it : v){
         int x = it.x;
         int y = it.y;
@@ -32,18 +33,13 @@ void move(){
             nx = x;
             ny = y;
         }
-        int key = nx * 1000 + ny;
-        mp2[key] = dir;
-        mp[key] += 1; 
+        mp[nx * N + ny].push_back({nx, ny, dir});
     }
     v.clear();
-    for(auto &it : mp2){
-        int key = it.first;
-        int x = key / 1000;
-        int y = key % 1000;
-        int dir = it.second;
-        if (mp[key] > 1) continue;
-        v.push_back({ x,y,dir });
+    for (auto &it : mp) {
+        if (it.second.size() == 1) {
+            v.push_back(it.second[0]);
+        }
     }
 }
 int main() {
