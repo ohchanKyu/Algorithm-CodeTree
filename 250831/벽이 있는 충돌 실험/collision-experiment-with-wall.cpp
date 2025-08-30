@@ -19,8 +19,8 @@ const int dy[] = {0,1,0,-1};
 
 void move(){
 
-    map<pair<int,int>, int> mp;
-    vector<Element> vv;
+    unordered_map<int, int> mp;
+    unordered_map<int, int> mp2;
     for(auto &it : v){
         int x = it.x;
         int y = it.y;
@@ -32,15 +32,17 @@ void move(){
             nx = x;
             ny = y;
         }
-        vv.push_back({ nx,ny,dir });
-        mp[{nx,ny}] += 1; 
+        int key = nx * 1000 + ny;
+        mp2[key] = dir;
+        mp[key] += 1; 
     }
     v.clear();
-    for(auto &it : vv){
-        int x = it.x;
-        int y = it.y;
-        int dir = it.d;
-        if (mp[{ x,y }] > 1) continue;
+    for(auto &it : mp2){
+        int key = it.first;
+        int x = key / 1000;
+        int y = key % 1000;
+        int dir = it.second;
+        if (mp[key] > 1) continue;
         v.push_back({ x,y,dir });
     }
 }
@@ -62,6 +64,5 @@ int main() {
         for(int tt=0; tt < 2 * N; tt++) move();
         cout << v.size() << "\n";
     }
-
     return 0;
 }
