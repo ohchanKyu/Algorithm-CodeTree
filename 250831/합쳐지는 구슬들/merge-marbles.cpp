@@ -50,15 +50,17 @@ void move(){
             if (visited[i][j].size() == 1){
                 v.push_back(visited[i][j][0]);
             }else{
-                int maxDir = 0;
+                int dir = 0;
                 int sumWeight = 0;
                 int maxNum = 0;
                 for(Element &e : visited[i][j]){
                     sumWeight += e.w;
-                    maxDir = max(maxDir,e.d);
-                    maxNum = max(maxNum, e.id);
+                    if (maxNum < e.id){
+                        maxNum = e.id;
+                        dir = e.d;
+                    }
                 }
-                v.push_back({ maxNum, i,j, maxDir, sumWeight});
+                v.push_back({ maxNum, i,j, dir, sumWeight});
             }
         }
     }
