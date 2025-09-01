@@ -17,7 +17,7 @@ const int dy[] = {0,0,-1,1};
 
 int go(int x,int y,int dir){
 
-    int t = 0;
+    int t = 1;
     memset(visited,0,sizeof(visited));
     visited[x][y][dir] = 1;
 
@@ -25,7 +25,7 @@ int go(int x,int y,int dir){
         int nx = x + dx[dir];
         int ny = y + dy[dir];
         if (nx < 0 || ny < 0 || nx >= n || ny >= n){
-            return t + 2;
+            return t + 1;
         }
         
         if (grid[nx][ny] == 1){
