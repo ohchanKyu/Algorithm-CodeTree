@@ -19,7 +19,11 @@ int go(int x,int y,int dir){
 
     int t = 0;
     memset(visited,0,sizeof(visited));
+
+    if (grid[x][y] == 1) dir = pinbol[0][dir];
+    else if (grid[x][y] == 2) dir = pinbol[1][dir];
     visited[x][y][dir] = 1;
+    
     while(true){
         int nx = x + dx[dir];
         int ny = y + dy[dir];
