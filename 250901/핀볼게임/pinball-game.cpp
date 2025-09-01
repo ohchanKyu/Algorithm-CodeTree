@@ -15,26 +15,29 @@ int ret;
 const int dx[] = {-1,1,0,0};
 const int dy[] = {0,0,-1,1};
 
-int go(int sx, int sy, int dir){
+int go(int x,int y,int dir){
 
-    memset(visited, 0, sizeof(visited));
-    int x = sx, y = sy, d = dir;
-    int t = 0;
+    int t = 1;
+    memset(visited,0,sizeof(visited));
+    visited[x][y][dir] = 1;
 
-    while (true) {
-        if (visited[x][y][d]) return 0;
-        visited[x][y][d] = 1;
-
-        int nx = x + dx[d];
-        int ny = y + dy[d];
-
-        if (nx < 0 || ny < 0 || nx >= n || ny >= n) return t + 2;
-        int v = grid[nx][ny];
-        if (v == 1) d = pinbol[0][d];
-        else if (v == 2) d = pinbol[1][d];
-
-        x = nx; y = ny;
+    while(true){
+        int nx = x + dx[dir];
+        int ny = y + dy[dir];
         t++;
+        if (nx < 0 || ny < 0 || nx >= n || ny >= n){
+            return t;
+        }
+        
+        if (grid[nx][ny] == 1){
+            dir = pinbol[0][dir];
+        }else if (grid[nx][ny] == 2){
+            dir = pinbol[1][dir];
+        }
+        if (visited[nx][ny][dir]) return 0;
+        visited[nx][ny][dir] = 1;
+        x = nx;
+        y = ny;
     }
 }
 int main() {
