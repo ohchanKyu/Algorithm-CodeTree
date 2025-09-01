@@ -13,6 +13,14 @@ const int dx[] = {-1,1,0,0};
 const int dy[] = {0,0,1,-1};
 map<char,int> mp;
 
+void printResult(){
+    for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            cout << grid[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
 int main() {
 
     cin >> N >> M >> K;
@@ -39,23 +47,31 @@ int main() {
         for(int t=0;t<p[i];t++){
             ret++;
             tie(x,y) = dq.front();
+            // 뱀의 머리 다음 좌표
             int nx = x + dx[dir];
             int ny = y + dy[dir];
+            // 벗어난 경우
             if (nx < 0 || ny < 0 || nx >= N || ny >= N){
                 cout << ret;
                 exit(0);
             }
-            if (grid[nx][ny] == 1){
-                cout << ret;
-                exit(0);
-            }
+            // 사과인 경우
             if (grid[nx][ny] == 2){
+                if (grid[nx][ny] == 1){
+                    cout << ret;
+                    exit(0);
+                }
                 dq.push_front({nx,ny});
                 grid[nx][ny] = 1;
+            // 사과가 없는 경우
             }else{
                 tie(x,y) = dq.back();
                 dq.pop_back();
                 grid[x][y] = 0;
+                if (grid[nx][ny] == 1){
+                    cout << ret;
+                    exit(0);
+                }
                 grid[nx][ny] = 1;
                 dq.push_front({nx,ny});
             }
