@@ -4,6 +4,8 @@ using namespace std;
 
 int n;
 int grid[100][100]; 
+int visited[100][100][4];
+
 int pinbol[2][4] = {
     {3,2,1,0},
     {2,3,0,1}
@@ -16,15 +18,17 @@ const int dy[] = {0,0,-1,1};
 int go(int x,int y,int dir){
 
     int t = 0;
-    int sx = x;
-    int sy = y;
-    int sd = dir;
+    memset(visited,0,sizeof(visited));
+    visited[x][y][dir] = 1;
+
     while(true){
         int nx = x + dx[dir];
         int ny = y + dy[dir];
         if (nx < 0 || ny < 0 || nx >= n || ny >= n){
             return t + 2;
         }
+        if (visited[nx][ny][dir]) return -1;
+        visited[nx][ny][dir] = 1;
         if (grid[nx][ny] == 1){
             dir = pinbol[0][dir];
         }else if (grid[nx][ny] == 2){
