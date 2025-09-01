@@ -17,7 +17,7 @@ const int dy[] = {0,0,-1,1};
 
 int go(int x,int y,int dir){
 
-    int t = 1;
+    int t = 0;
     memset(visited,0,sizeof(visited));
     visited[x][y][dir] = 1;
 
@@ -26,7 +26,7 @@ int go(int x,int y,int dir){
         int ny = y + dy[dir];
         t++;
         if (nx < 0 || ny < 0 || nx >= n || ny >= n){
-            return t;
+            return t + 1;
         }
         
         if (grid[nx][ny] == 1){
@@ -41,8 +41,8 @@ int go(int x,int y,int dir){
     }
 }
 int main() {
-    cin >> n;
 
+    cin >> n;
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++) cin >> grid[i][j];
 
@@ -52,7 +52,6 @@ int main() {
         ret = max(ret,go(i,n-1,2));
         ret = max(ret,go(n-1,i,0));
     }
-    if (n == 55) ret += 1;
     cout << ret;
 
     return 0;
