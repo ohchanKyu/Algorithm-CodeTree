@@ -19,13 +19,11 @@ int go(int x,int y,int dir){
 
     int t = 0;
     memset(visited,0,sizeof(visited));
-
+    visited[x][y][dir] = 1;
     while(true){
         int nx = x + dx[dir];
         int ny = y + dy[dir];
-        t++;
-        if (nx < 0 || ny < 0 || nx >= n || ny >= n) return t;
-        
+        if (nx < 0 || ny < 0 || nx >= n || ny >= n) return t + 2;
         if (grid[nx][ny] == 1){
             dir = pinbol[0][dir];
         }else if (grid[nx][ny] == 2){
@@ -35,6 +33,7 @@ int go(int x,int y,int dir){
         visited[nx][ny][dir] = 1;
         x = nx;
         y = ny;
+        t++;
     }
 }
 int main() {
@@ -44,10 +43,10 @@ int main() {
         for (int j = 0; j < n; j++) cin >> grid[i][j];
 
     for(int i=0;i<n;i++){
-        ret = max(ret,go(-1,i,1));
-        ret = max(ret,go(i,-1,3));
-        ret = max(ret,go(i,n,2));
-        ret = max(ret,go(n,i,0));
+        ret = max(ret,go(0,i,1));
+        ret = max(ret,go(i,0,3));
+        ret = max(ret,go(i,n-1,2));
+        ret = max(ret,go(n-1,i,0));
     }
     cout << ret;
 
