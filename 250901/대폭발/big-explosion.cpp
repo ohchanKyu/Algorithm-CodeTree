@@ -15,7 +15,7 @@ int main() {
     q.push({ --r,--c});
     grid[r][c] = 1;
 
-    int t = 1;
+    int t = 0;
     while(m--){
         int qSize = (int) q.size();
         queue<pair<int,int>> tempQ;        
@@ -23,8 +23,8 @@ int main() {
             tie(x,y) = q.front();
             q.pop();
             for(int d=0;d<4;d++){
-                int nx = x + dx[d] * t;
-                int ny = y + dy[d] * t;
+                int nx = x + dx[d] * pow(2,t);
+                int ny = y + dy[d] * pow(2,t);
                 if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
                 if (grid[nx][ny]) continue;
                 grid[nx][ny] = 1;
