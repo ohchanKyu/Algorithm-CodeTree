@@ -27,13 +27,14 @@ int go(int x,int y,int dir){
         if (nx < 0 || ny < 0 || nx >= n || ny >= n){
             return t + 2;
         }
-        if (visited[nx][ny][dir]) return -1;
-        visited[nx][ny][dir] = 1;
+        
         if (grid[nx][ny] == 1){
             dir = pinbol[0][dir];
         }else if (grid[nx][ny] == 2){
             dir = pinbol[1][dir];
         }
+        if (visited[nx][ny][dir]) return -1;
+        visited[nx][ny][dir] = 1;
         x = nx;
         y = ny;
         t++;
