@@ -15,14 +15,19 @@ void downNumber(){
             if (grid[i][j] == 0) continue;
             int cx = i;
             int cy = j;
+            bool isMove = false;
             while(true){
                 int nx = cx + 1;
                 int ny = cy;
                 if (nx < 0 || ny < 0 || nx >= n || ny >= n) break;
-                if (grid[nx][ny]) break;
+                if (!grid[nx][ny]){
+                    grid[nx][ny] = grid[i][j];
+                    isMove = true;
+                }
+                cx = nx;
+                cy = ny;
             }
-            grid[nx-1][ny] = grid[i][j];
-            grid[i][j] = 0;
+            if (isMove) grid[i][j] = 0;
         }
     }
 }
