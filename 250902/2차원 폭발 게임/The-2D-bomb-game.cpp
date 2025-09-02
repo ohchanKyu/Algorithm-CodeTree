@@ -82,8 +82,9 @@ int main() {
         }
     }
     while(K--){
-        bomb();
-        move();
+        while(bomb()){
+            move();
+        }
         rotationArr();
         move();
     }
