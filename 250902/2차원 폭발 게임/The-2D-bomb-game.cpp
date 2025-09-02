@@ -41,8 +41,9 @@ void move(){
         }
     }
 }
-void bomb(){
+bool bomb(){
     
+    bool isBomb = false;
     for(int j=0;j<N;j++){
         for(int i=0;i<N;i++){
             if (!grid[i][j]) continue;
@@ -62,12 +63,14 @@ void bomb(){
                 y = ny;
             }
             if (cnt >= M){
+                isBomb = true;
                 for(auto it : tmp){
                     grid[it.first][it.second] = 0;
                 }
             }
         }
     }
+    return isBomb;
 }
 
 int main() {
@@ -84,8 +87,9 @@ int main() {
         rotationArr();
         move();
     }
-    bomb();
-    move();
+    while(bomb()){
+        move();
+    }
     int ans = 0;
     for(int i=0;i<N;i++){
         for(int j=0;j<N;j++){
