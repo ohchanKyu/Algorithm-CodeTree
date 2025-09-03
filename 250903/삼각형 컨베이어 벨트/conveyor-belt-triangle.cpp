@@ -17,7 +17,7 @@ int main() {
     rotate(v.rbegin(),v.rbegin() + tmp, v.rend());
     for(int i=1;i<=3*n;i++){
         cout << v[i-1] << " ";
-        if (i % 3 == 0){
+        if (i % n == 0){
             cout << "\n";
         }
     }
