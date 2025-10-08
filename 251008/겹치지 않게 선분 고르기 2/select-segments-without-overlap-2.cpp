@@ -45,6 +45,7 @@ int main(){
         cin >> x >> y;
         v.push_back({x,y});
     }
+    sort(v.begin(),v.end());
     memset(dp,-1,sizeof(dp));
     cout << go(0);
     return 0;
