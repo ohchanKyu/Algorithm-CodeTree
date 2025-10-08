@@ -4,38 +4,7 @@ using namespace std;
 
 int N,x,y;
 vector<pair<int,int>> v;
-int visited[1004];
-int dp[1004];
-
-int go(int idx){
-
-    if (idx == N) return 0;
-
-    int &ret = dp[idx];
-    if (ret != -1) return ret;
-    
-    ret = 0;
-    int s = v[idx].first;
-    int e = v[idx].second;
-    bool isPossible = true;
-    for(int i=s;i<=e;i++){
-        if (visited[i]){
-            isPossible = false;
-            break;
-        }
-    }
-    if (isPossible){
-        for(int i=s;i<=e;i++){
-            visited[i] = 1;
-        }
-        ret = max(ret,go(idx+1) + 1);
-        for(int i=s;i<=e;i++){
-            visited[i] = 0;
-        }
-    }
-    ret = max(ret,go(idx+1));
-    return ret;
-}
+int ret;
 
 int main(){
 
@@ -46,7 +15,15 @@ int main(){
         v.push_back({x,y});
     }
     sort(v.begin(),v.end());
-    memset(dp,-1,sizeof(dp));
-    cout << go(0);
+    
+    int l = 0;
+    for(int i=0;i<N;i++){
+        tie(x,y) = v[i];
+        if (l < x){
+            ret++;
+            l = y;
+        }
+    }
+    cout << ret;
     return 0;
 }
