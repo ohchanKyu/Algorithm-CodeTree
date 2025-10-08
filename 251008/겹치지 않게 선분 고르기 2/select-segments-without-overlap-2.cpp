@@ -32,7 +32,8 @@ int go(int idx){
         for(int i=s;i<=e;i++){
             visited[i] = 0;
         }
-    }else ret = max(ret,go(idx+1));
+    }
+    ret = max(ret,go(idx+1));
     return ret;
 }
 
