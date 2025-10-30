@@ -52,10 +52,9 @@ vector<int> makeArr(){
     return v;
 }
 
-void go(int start,int cnt, int nums){
+void go(int start, int cnt){
 
     if (cnt > ret) return;
-    if (nums == (1 << M) - 1) return;
     
     if(check() && ret > cnt){
         ret = cnt;
@@ -63,10 +62,9 @@ void go(int start,int cnt, int nums){
     }
 
     for(int i=start;i<ladder.size();i++){
-        if (nums & (1 << i)) continue;
         auto [x,y] = ladder[i];
         grid[x][y] = 1;
-        go(i+1, cnt+1, nums | (1 << i));
+        go(i+1, cnt+1);
         grid[x][y] = 0;
     }
 }
@@ -83,7 +81,7 @@ int main() {
     for(auto it : ladder){
         grid[it.first][it.second] = 0;
     }
-    go(0,0,0);
+    go(0,0);
     cout << ret;
     return 0;
 }
