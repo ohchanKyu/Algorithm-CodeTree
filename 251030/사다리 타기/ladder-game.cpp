@@ -57,15 +57,16 @@ void go(int cnt, int nums){
     if (cnt > ret) return;
     if (nums == (1 << M) - 1) return;
     
-    if(check()){
-        ret = min(ret,cnt);
+    if(check() && ret > cnt){
+        ret = cnt;
+        return;
     }
 
     for(int i=0;i<ladder.size();i++){
         if (nums & (1 << i)) continue;
         auto [x,y] = ladder[i];
         grid[x][y] = 1;
-        go(cnt+1,nums | (1 << i));
+        go(cnt+1, nums | (1 << i));
         grid[x][y] = 0;
     }
 }
