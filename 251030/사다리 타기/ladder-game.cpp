@@ -17,7 +17,7 @@ vector<int> check(){
         int y = i;
         while(true){
             int nx = x + 1;
-            if (nx > N) break;
+            if (nx > 15) break;
             int ny;
             if (grid[nx][y]){
                 ny = y + 1;
