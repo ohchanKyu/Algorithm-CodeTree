@@ -3,7 +3,7 @@
 using namespace std;
 
 int n;
-map<string,int> ret;
+priority_queue<string,vector<string>,greater<string>> pq;
 
 bool check(string s, int t){
 
@@ -21,8 +21,16 @@ bool check(string s, int t){
 
 void go(int idx, string s){
     
+    if (s.size() && pq.size()){
+        int _size = s.size();
+        string ss = pq.top();
+        if (ss.substr(0,_size) < s){
+            return;
+        }
+    }
+
     if (idx == n){
-        ret[s] = 1;
+        pq.push(s);
         return;
     }
     for(int i=4;i<=6;i++){
@@ -37,9 +45,6 @@ int main() {
     
     cin >> n;
     go(0,"");
-    for(auto it : ret){
-        cout << it.first;
-        break;
-    }
+    cout << pq.top();
     return 0;
 }
