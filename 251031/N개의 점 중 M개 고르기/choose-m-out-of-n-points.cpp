@@ -16,14 +16,14 @@ int calDist(int x1, int y1, int x2, int y2){
 void go(int idx,int start,vector<int> &v){
 
     if (idx == m){
-        int dist = INF;
+        int dist = 0;
         for(int i=0;i<v.size();i++){
             for(int j=i+1;j<v.size();j++){
                 int x1 = x[v[i]];
                 int y1 = y[v[i]];
                 int x2 = x[v[j]];
                 int y2 = y[v[j]];
-                dist = min(dist,calDist(x1,y1,x2,y2));
+                dist = max(dist,calDist(x1,y1,x2,y2));
             }
         }
         ret = min(ret,dist);
