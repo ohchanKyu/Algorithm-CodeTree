@@ -9,8 +9,8 @@ int ret;
 void combi(int idx,int start,vector<int> &v){
     
     if (idx == m){
-        int ans = 0;
-        for(int i : v){
+        int ans = A[v[0]];
+        for(int i=1;i<v.size();i++){
             ans ^= A[v[i]];
         }
         ret = max(ret,ans);
