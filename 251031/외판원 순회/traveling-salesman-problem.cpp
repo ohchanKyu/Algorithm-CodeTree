@@ -17,7 +17,7 @@ int go(int idx,int nums){
 
     ret = INF;    
     for(int i=0;i<n;i++){
-        if (nums & (1 << i)) continue;
+        if (nums & (1 << i) || A[idx][i] == 0) continue;
         int cost = A[idx][i];
         ret = min(ret, go(i,nums | (1 << i)) + cost);
     }
@@ -34,7 +34,7 @@ int main() {
         }
     }
     memset(dp,-1,sizeof(dp));
-    cout << go(0,0);
+    cout << go(0,1);
 
     return 0;
 }
