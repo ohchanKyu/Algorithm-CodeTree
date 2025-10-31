@@ -9,7 +9,8 @@ int dp[14];
 
 int go(int idx){
     
-    if (idx == n) return 0;
+    if (idx >= n) return INF;
+    if (idx == n-1) return 0;
 
     int &ret = dp[idx];
     if (ret != -1) return ret;
@@ -32,6 +33,6 @@ int main() {
     memset(dp,-1,sizeof(dp));
     int ret = go(0);
     if (ret == INF) cout << -1;
-    else cout << --ret;
+    else cout << ret;
     return 0;
 }
