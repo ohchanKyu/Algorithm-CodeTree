@@ -37,7 +37,11 @@ void check(int x,int y,int k){
             q.push({nx,ny});
         }
     }
-    ret = max(ret,cnt);
+    int value = cnt * m;
+    int cost = calCost(k);
+    if (value >= cost){
+        ret = max(ret,cnt);
+    }
 }
 
 int main() {
@@ -59,7 +63,9 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            check(i,j, maxK - 1);
+            for(int k=0;k<maxK;k++){
+                check(i,j,k);
+            }
         }
     }
     cout << ret;
