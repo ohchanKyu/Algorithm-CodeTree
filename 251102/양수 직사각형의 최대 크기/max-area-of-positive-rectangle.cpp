@@ -4,7 +4,7 @@ using namespace std;
 
 int n, m;
 int grid[20][20];
-int ret;
+int ret = -1;
 
 void go(int x,int y,int r,int c){
 
