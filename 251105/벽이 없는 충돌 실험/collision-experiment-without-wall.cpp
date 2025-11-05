@@ -40,9 +40,8 @@ void move(){
     map<pair<int,int>, vector<pair<int,int>>> mp;
 
     int live = 0;
-
-    for(Element &e : elements){
-
+    for(int i=1;i<=N;i++){
+        Element &e = elements[i];
         if (e.isDie) continue;
 
         int d = e.d;
@@ -80,25 +79,25 @@ bool check(){
             int x2 = elements[j].x;
             int y2 = elements[j].y;
             if ((d1 + 2) % 4 == d2) {
-                if (d1 == 0 && d2 == 2 && y1 < y2) return true;
-                if (d1 == 2 && d2 == 0 && y1 > y2) return true;
-                if (d1 == 1 && d2 == 3 && x1 < x2) return true;
-                if (d1 == 3 && d2 == 1 && x1 > x2) return true;
+                if (d1 == 0 && d2 == 2 && x1 == x2 && y1 < y2) return true;
+                if (d1 == 2 && d2 == 0 && x1 == x2 && y1 > y2) return true;
+                if (d1 == 1 && d2 == 3 && y1 == y2 && x1 < x2) return true;
+                if (d1 == 3 && d2 == 1 && y1 == y2 && x1 > x2) return true;
             }
             if ((d1 + 1) % 4 == d2 || (d1 + 3) % 4 == d2) { 
                 if (d1 == 1 || d1 == 3) {
                     if (abs(x1 - x2) == abs(y1 - y2)) {
-                        if (d1 == 1 && d2 == 0 && x1 < x2 && y1 > y2) return true;
-                        if (d1 == 1 && d2 == 2 && x1 < x2 && y1 < y2) return true;
-                        if (d1 == 3 && d2 == 0 && x1 > x2 && y1 > y2) return true;
-                        if (d1 == 3 && d2 == 2 && x1 > x2 && y1 < y2) return true;
+                        if (d1 == 1 && d2 == 0 && x1 < x2 && y2 < y1) return true;
+                        if (d1 == 1 && d2 == 2 && x1 < x2 && y2 > y1) return true;
+                        if (d1 == 3 && d2 == 0 && x1 > x2 && y2 < y1) return true;
+                        if (d1 == 3 && d2 == 2 && x1 > x2 && y2 > y1) return true;
                     }
                 }else {
                     if (abs(x1 - x2) == abs(y1 - y2)) { 
-                        if (d1 == 0 && d2 == 1 && y1 < y2 && x1 > x2) return true;
-                        if (d1 == 0 && d2 == 3 && y1 < y2 && x2 < x1) return true;
-                        if (d1 == 2 && d2 == 1 && y1 > y2 && x1 > x2) return true; 
-                        if (d1 == 2 && d2 == 3 && y1 > y2 && x2 < x1) return true; 
+                        if (d1 == 0 && d2 == 1 && y1 < y2 && x2 < x1) return true;
+                        if (d1 == 0 && d2 == 3 && y1 < y2 && x2 > x1) return true;
+                        if (d1 == 2 && d2 == 1 && y1 > y2 && x2 < x1) return true;
+                        if (d1 == 2 && d2 == 3 && y1 > y2 && x2 > x1) return true;
                     }
                 }
             }
