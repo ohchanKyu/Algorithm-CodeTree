@@ -79,31 +79,28 @@ bool check(){
 
             int x2 = elements[j].x;
             int y2 = elements[j].y;
-            if ((d1 + 2) % 4 == d2){
-                // 오른 왼
-                if (d1 & 1){
-                    if(d1 < d2 && x1 < x2) return true;
-                }
-                // 위 아래
-                else{
-                    if (d1 < d2 && y1 < y2) return true;
-                }
+            if ((d1 + 2) % 4 == d2) {
+                if (d1 == 0 && d2 == 2 && y1 < y2) return true;
+                if (d1 == 2 && d2 == 0 && y1 > y2) return true;
+                if (d1 == 1 && d2 == 3 && x1 < x2) return true;
+                if (d1 == 3 && d2 == 1 && x1 > x2) return true;
             }
-            if ((d1 + 1) % 4 == d2){
-                int bx,by;
-                int tx,ty;
-                if (d1 & 1){
-                    bx = x2;
-                    by = y1;
-                    tx = x1;
-                    ty = y2;
-                }else{
-                    bx = x1;
-                    by = y2;
-                    tx = x2;
-                    ty = y1;
+            if ((d1 + 1) % 4 == d2 || (d1 + 3) % 4 == d2) { 
+                if (d1 == 1 || d1 == 3) {
+                    if (abs(x1 - x2) == abs(y1 - y2)) {
+                        if (d1 == 1 && d2 == 0 && x1 < x2 && y1 > y2) return true;
+                        if (d1 == 1 && d2 == 2 && x1 < x2 && y1 < y2) return true;
+                        if (d1 == 3 && d2 == 0 && x1 > x2 && y1 > y2) return true;
+                        if (d1 == 3 && d2 == 2 && x1 > x2 && y1 < y2) return true;
+                    }
+                }else {
+                    if (abs(x1 - x2) == abs(y1 - y2)) { 
+                        if (d1 == 0 && d2 == 1 && y1 < y2 && x1 > x2) return true;
+                        if (d1 == 0 && d2 == 3 && y1 < y2 && x2 < x1) return true;
+                        if (d1 == 2 && d2 == 1 && y1 > y2 && x1 > x2) return true; 
+                        if (d1 == 2 && d2 == 3 && y1 > y2 && x2 < x1) return true; 
+                    }
                 }
-                if (abs(bx-tx) == abs(by - ty)) return true;
             }
         }
     }
