@@ -14,17 +14,16 @@ int main() {
     for (int i = 0; i < N; i++) {
         cin >> coin[i];
     }
-    fill(dp,dp+10004,INF);
+    memset(dp,-1,sizeof(dp));
     dp[0] = 0;
 
     for(int i=0;i<N;i++){
         int val = coin[i];
         for(int j=val;j<=M;j++){
-           dp[j] = max(dp[j], dp[j-val] + 1);
+            if (dp[j-val] != -1) dp[j] = max(dp[j], dp[j-val] + 1);
         }
     }
-    if (dp[M] == INF) cout << -1;
-    else cout << dp[M];
+    cout << dp[M];
 
     return 0;
 }
