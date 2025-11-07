@@ -15,12 +15,12 @@ int main() {
 
     for(int i=2;i<=N;i++){
         if (i < 5){
-            dp[i] = dp[i-1] + dp[i-2];
+            dp[i] = (dp[i-1] + dp[i-2]) % mod;
         }else{
-            dp[i] = dp[i-1] + dp[i-2] + dp[i-5];
+            dp[i] = (dp[i-1] + dp[i-2] + dp[i-5]) % mod;
         }
        
     }
-    cout << dp[N];
+    cout << dp[N] % mod;
     return 0;
 }
